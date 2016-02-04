@@ -4,12 +4,18 @@ import (
 	"encoding/json"
 	"github.com/eskadah/TwttrGo/lib"
 	"net/http"
+	"os"
 )
 
 func main() {
 	http.HandleFunc("/search", searchResults)
 	http.Handle("/", http.FileServer(http.Dir("../public")))
-	http.ListenAndServe(":5000", nil)
+
+	port := os.Getenv("PORT")
+	if port == ""{
+		port = "5000"
+	}
+	http.ListenAndServe(":"+port, nil)
 }
 
 func searchResults(w http.ResponseWriter, r *http.Request) {
