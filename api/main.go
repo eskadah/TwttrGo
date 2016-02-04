@@ -7,9 +7,11 @@ import (
 	"os"
 )
 
+const PUBLIC_FOLDER = "/public"
+
 func main() {
 	http.HandleFunc("/search", searchResults)
-	http.Handle("/", http.FileServer(http.Dir("../public")))
+	http.Handle("/", http.FileServer(http.Dir(publicFolder())))
 
 	port := os.Getenv("PORT")
 	if port == ""{
@@ -28,4 +30,9 @@ func searchResults(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(js)
+}
+
+func publicFolder() string{
+	dir, _ := os.Getwd()
+	return dir + PUBLIC_FOLDER
 }
