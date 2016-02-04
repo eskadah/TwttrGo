@@ -39,4 +39,3 @@ func consonantMatch(input, testString string) (result bool) {
 		return
 	}
 }
-

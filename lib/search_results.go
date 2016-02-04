@@ -8,7 +8,6 @@ func BuildSearchResults(searchTerm string) []string {
 	var builtResults []string
 	sectionDepth := len(searchTerm) / 2
 	wg := &sync.WaitGroup{}
-	//
 	for i := 1; i <= sectionDepth; i++ {
 		wg.Add(1)
 

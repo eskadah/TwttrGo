@@ -2,8 +2,8 @@ package main
 
 import (
 	"encoding/json"
-	"net/http"
 	"github.com/eskadah/TwttrGo/lib"
+	"net/http"
 )
 
 func main() {

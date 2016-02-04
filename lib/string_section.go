@@ -27,13 +27,13 @@ func NewSectionedString(root string, templateLength int) *SectionedString {
 
 func defineTemplates(rootLength, templateLength int) (templates [][]int) {
 	if templateLength == MIN_TEMPLATE_LENGTH {
-		for unitLength := MIN_TEMPLATE_LENGTH; unitLength <= rootLength - MIN_TEMPLATE_LENGTH; unitLength++ {
+		for unitLength := MIN_TEMPLATE_LENGTH; unitLength <= rootLength-MIN_TEMPLATE_LENGTH; unitLength++ {
 			templates = append(templates, []int{unitLength, rootLength - unitLength})
 		}
 	} else {
-		for unitLength := MIN_TEMPLATE_LENGTH; unitLength <= rootLength - MIN_TEMPLATE_LENGTH; unitLength++ {
-			for _, template := range defineTemplates(unitLength, templateLength - 1) {
-				template = append(template, rootLength - unitLength)
+		for unitLength := MIN_TEMPLATE_LENGTH; unitLength <= rootLength-MIN_TEMPLATE_LENGTH; unitLength++ {
+			for _, template := range defineTemplates(unitLength, templateLength-1) {
+				template = append(template, rootLength-unitLength)
 				templates = append(templates, template)
 			}
 		}
@@ -59,7 +59,6 @@ func (sectionedStr *SectionedString) generateSections() {
 	}
 }
 
-// add case for no sections and templateLength == 1
 func (section *SectionedString) matches() [][]*MatchResult {
 	matches := [][]*MatchResult{}
 	if section.templateLength == 1 {
@@ -93,7 +92,7 @@ func mapToString(matches []*MatchResult) (strings [][]string) {
 
 func multiplex(arrays ...[]string) (result []string) {
 	if len(arrays) == 1 {
-		result = append(result, strings.Join(arrays[0], " "))
+		result = arrays[0]
 	} else if len(arrays) == 2 {
 		first, second := arrays[0], arrays[1]
 		for _, firstUnit := range first {

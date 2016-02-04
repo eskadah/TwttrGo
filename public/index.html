@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title> Twttr </title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/lib/bootstrap.min.css">
     <link rel="stylesheet" href="/css/app.css">
+    <script src="/js/lib/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -17,8 +18,9 @@
 
         <h3> Type in some consonants to get started</h3>
         <br>
+        <div id="error"></div>
 
-        <form action="/search" method="get" class='form-inline'>
+        <form action="/search" method="get" class='form-inline' id="search-form">
             <label>
                 Message:
                 <input type="text" name="query" placeholder="Please enter only consonants" class='form-control'
@@ -27,7 +29,14 @@
             <input type="submit" value="Interprete" class="btn btn-primary">
         </form>
     </div>
+    <br>
+
+    <ul class="list-group" id="results" style="width: 50%"></ul>
 
 </div>
+<script src="/js/lib/jquery-min.js"></script>
+<script src="/js/lib/underscore-min.js"></script>
+<script src="/js/lib/backbone-min.js"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>
